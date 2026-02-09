@@ -82,9 +82,9 @@ export class AuthServiceV1 implements IAuthService {
   }
 
   async resetPassword(token: string, newPassword: string): Promise<void> {
-    const payload = verifyToken<{ userId: string; purpose: string }>(token);
-
     try {
+      const payload = verifyToken<{ userId: string; purpose: string }>(token);
+
       if (payload.purpose !== 'RESET_PASSWORD') {
         throw new AppError(HTTP_STATUS.UNAUTHORIZED, AUTH_MESSAGES.INVALID_TOKEN);
       }
