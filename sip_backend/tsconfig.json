@@ -10,6 +10,7 @@
     //  "noUncheckedIndexedAccess": true,
     "strict": true,
     "esModuleInterop": true,
+    "noImplicitReturns": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
