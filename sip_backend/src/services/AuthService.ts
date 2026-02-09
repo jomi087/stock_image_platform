@@ -84,15 +84,29 @@ export class AuthServiceV1 implements IAuthService {
   async resetPassword(token: string, newPassword: string): Promise<void> {
     const payload = verifyToken<{ userId: string; purpose: string }>(token);
 
-    if (payload.purpose !== 'RESET_PASSWORD') {
-      throw new AppError(HTTP_STATUS.UNAUTHORIZED, AUTH_MESSAGES.INVALID_TOKEN);
-    }
+    try {
+      if (payload.purpose !== 'RESET_PASSWORD') {
+        throw new AppError(HTTP_STATUS.UNAUTHORIZED, AUTH_MESSAGES.INVALID_TOKEN);
+      }
 
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-    const updated = await this._authRepository.updatePassword(payload.userId, hashedPassword);
-    if (!updated) {
-      throw new AppError(HTTP_STATUS.NOT_FOUND, AUTH_MESSAGES.USER_NOT_FOUND);
+      const updated = await this._authRepository.updatePassword(payload.userId, hashedPassword);
+      if (!updated) {
+        throw new AppError(HTTP_STATUS.NOT_FOUND, AUTH_MESSAGES.USER_NOT_FOUND);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        if (error.name === 'TokenExpiredError') {
+          throw new AppError(HTTP_STATUS.UNAUTHORIZED, AUTH_MESSAGES.RESET_TOKEN_EXPIRED);
+        }
+
+        if (error.name === 'JsonWebTokenError') {
+          throw new AppError(HTTP_STATUS.UNAUTHORIZED, AUTH_MESSAGES.INVALID_TOKEN);
+        }
+
+        throw error;
+      }
     }
   }
 }
