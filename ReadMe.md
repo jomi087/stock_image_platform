@@ -40,3 +40,27 @@ This mini project is intended for:
   - Understanding how an SIP is designed and implemented
 ---
 
+
+# 📁 Project Structure and working 
+
+
+## 1st - Clone the repository
+```pwsh
+git clone https://github.com/jomi087/stock_image_platform.git
+```
+
+## 2nd - Frontend & Backend Separation
+The project contains **two main subdirectories**:
+1. **frontend** 
+    - Stock_Image_Platform\sip_frontend
+2. **backend**
+    - Stock_Image_Platform\sip_backend
+
+Each sub-directory has its **own `README.md` file**, which explains:
+- How to install dependencies
+- env setup
+- How to run the application
+---
+
+## 📄 Notes
+Please refer to the individual `README.md` files inside the **sip_backend** and **sip_frontend** directories for detailed setup and run instructions.
