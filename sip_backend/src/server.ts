@@ -8,7 +8,7 @@ connectDB().catch((err) => {
   logger.error('Server startup failed', err);
   process.exit(1);
 });
-
+console.log("testing")
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);
 });
