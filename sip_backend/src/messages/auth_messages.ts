@@ -4,8 +4,7 @@ export const AUTH_MESSAGES = {
 
   INVALID_CREDENTIALS: 'Invalid credentials',
 
-  AUTH_REQUIRED: 'Authentication required',
-  TOKEN_MISSING: 'Authentication token missing',
+  UNAUTHORIZED: 'Un-Autrherised',
   RESET_TOKEN_EXPIRED: 'link expired, please start again',
   Session_TOKEN_EXPIRED: 'Session expired. Please login again.',
   INVALID_TOKEN: 'Invalid authentication token',
