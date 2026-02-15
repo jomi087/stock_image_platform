@@ -6,13 +6,14 @@ import { AUTH_MESSAGES } from '../messages/auth_messages';
 import { IAuthRepository } from '../repositories/AuthRepositoryInterface';
 import { IAuthService } from './AuthServiceInterface';
 import { signToken, verifyToken } from '../utils/jwt';
-import { sendMail } from '../utils/mail';
 import { LOGIN_TOKEN_TTL, RESET_PASSWORD_TOKEN_TTL } from '../constants/auth-constants';
+import { IEmailService } from '../infrastructure/email/EmailServiceInterface';
 
-export class AuthServiceV1 implements IAuthService {
+export class AuthService implements IAuthService {
   //High-level module = Business logic layer
   constructor(
     private readonly _authRepository: IAuthRepository, //High-level modules should NOT depend on low-level modules They should depend on abstractions (interfaces)
+    private readonly _emailService: IEmailService,
   ) {}
 
   async signin(email: string, mobile: string, password: string): Promise<void> {
@@ -69,16 +70,8 @@ export class AuthServiceV1 implements IAuthService {
       RESET_PASSWORD_TOKEN_TTL,
     );
 
-    const subject = 'Reset your password';
     const resetLink = `${process.env.FRONTEND_RESET_URL}?token=${resetToken}`;
-    const content = `
-      <p>You requested a password reset.</p>
-      <p>Click the link below to reset your password:</p>
-      <a href="${resetLink}">${resetLink}</a>
-      <p>This link will expire shortly.</p>
-    `;
-
-    await sendMail(user.email, subject, content);
+    await this._emailService.sendResetPasswordEmail(user.email, resetLink);
   }
 
   async resetPassword(token: string, newPassword: string): Promise<void> {

@@ -10,7 +10,8 @@ type RequestSchema = ZodType<{
 }>;
 
 export const validateRequest =
-  (schema: RequestSchema) => (req: Request, res: Response, next: NextFunction) => {
+  (schema: RequestSchema) =>
+  (req: Request, res: Response, next: NextFunction): void => {
     const result = schema.safeParse({
       body: req.body as unknown,
       query: req.query,
@@ -22,10 +23,11 @@ export const validateRequest =
       const errorMessages = result.error.issues.map((err) => err.message);
 
       logger.debug('Validation Error', { errors: errorMessages });
-      return res.status(HTTP_STATUS.BAD_REQUEST).json({
+      res.status(HTTP_STATUS.BAD_REQUEST).json({
         success: false,
         message: errorMessages[0]?.split(':')[0] || errorMessages[0] || errorMessages,
       });
+      return;
     }
 
     if (result.data.body !== undefined) {
