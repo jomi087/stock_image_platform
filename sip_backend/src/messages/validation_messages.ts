@@ -8,4 +8,7 @@ export const VALIDATION_MESSAGES = {
   PASSWORD_REQUIRED: 'Password is required',
   EMAIL_REQUIRED: 'Email is required',
   EMAIL_INVALID: 'Invalid email format',
+
+  IMAGE_FILE_ALLOWED: 'Only image files are allowed',
+  IMAGES_REQUIRED: 'Images are required',
 };
