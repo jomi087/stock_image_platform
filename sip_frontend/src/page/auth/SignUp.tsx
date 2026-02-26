@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { AuthLayout } from '../components/ui/AuthLayout';
-import { Input } from '../components/ui/Input';
-import { Button } from '../components/ui/Button';
+import { AuthLayout } from '../../components/ui/AuthLayout';
+import { Input } from '../../components/ui/Input';
+import { Button } from '../../components/ui/Button';
 import {
   EMAIL_REGEX,
   PASSWORD_MIN_LENGTH,
-} from '../constants/validation_constants';
+} from '../../constants/validation_constants';
 import { Link, useNavigate } from 'react-router-dom';
-import AuthService from '../services/AuthService';
+import AuthService from '../../services/AuthService';
 import toast from 'react-hot-toast';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import axios from 'axios';
@@ -63,7 +63,7 @@ export const SignUp = () => {
       setLoading(true);
       const res = await AuthService.sigup(email, mobile, password);
       toast.success(res.data.message);
-      navigate('/login');
+      navigate('/');
     } catch (error) {
       let errorMsg = 'Login failed';
       if (axios.isAxiosError(error)) {
@@ -150,7 +150,7 @@ export const SignUp = () => {
       <div className="mt-3 pt-2 border-t border-gray-200 text-center text-sm text-gray-500">
         Alredy have an account?{' '}
         <Link
-          to="/login"
+          to="/"
           className="text-indigo-500 hover:text-purple-600 font-semibold transition-colors"
         >
           Sign In

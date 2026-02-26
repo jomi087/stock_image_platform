@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { AuthLayout } from '../components/ui/AuthLayout';
-import { Input } from '../components/ui/Input';
-import { Button } from '../components/ui/Button';
+import { AuthLayout } from '../../components/ui/AuthLayout';
+import { Input } from '../../components/ui/Input';
+import { Button } from '../../components/ui/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 // import styles from './SignIn.module.css';
 import {
   EMAIL_REGEX,
   PASSWORD_MIN_LENGTH,
-} from '../constants/validation_constants';
-import AuthService from '../services/AuthService';
+} from '../../constants/validation_constants';
+import AuthService from '../../services/AuthService';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
@@ -55,7 +55,7 @@ export const SignIn = () => {
       setLoading(true);
       const res = await AuthService.login(email, password);
       localStorage.setItem('token', res.data.token);
-      navigate('/');
+      navigate('/dashboard');
     } catch (error) {
       let errorMsg = 'Login failed';
       if (axios.isAxiosError(error)) {

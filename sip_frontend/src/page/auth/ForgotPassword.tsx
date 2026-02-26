@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { AuthLayout } from '../components/ui/AuthLayout';
-import { Input } from '../components/ui/Input';
-import { Button } from '../components/ui/Button';
-import AuthService from '../services/AuthService';
+import { AuthLayout } from '../../components/ui/AuthLayout';
+import { Input } from '../../components/ui/Input';
+import { Button } from '../../components/ui/Button';
+import AuthService from '../../services/AuthService';
 import toast from 'react-hot-toast';
 import axios from 'axios';
-import { EMAIL_REGEX } from '../constants/validation_constants';
+import { EMAIL_REGEX } from '../../constants/validation_constants';
 import { useNavigate } from 'react-router-dom';
 
 export const ForgotPassword = () => {

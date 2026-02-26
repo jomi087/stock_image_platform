@@ -6,4 +6,11 @@ export const API_ROUTES = {
     RESET_PASSWORD: '/auth/reset-password'
   },
 
+  STORAGE: {
+    GETIMAGE: '/image/',
+    EDITIMAGE: (id:string) => `/image/${id}`,
+    DELETEIMAGE:(id:string) => `/image/${id}`,
+    UPLOADIMAGE: '/image/upload',
+    RE_ARRANGEIMAGE: '/image/reorder'
+  }
 } as const;
