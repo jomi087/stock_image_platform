@@ -5,9 +5,9 @@ export const reorderImagesSchema = z.object({
     .object({
       imageId: z.string().min(1, 'Image ID is required'),
 
-      prevOrder: z.number().nullable(),
+      prevOrder: z.coerce.number().nullable(),
 
-      nextOrder: z.number().nullable(),
+      nextOrder: z.coerce.number().nullable(),
     })
     .refine((data) => !(data.prevOrder === null && data.nextOrder === null), {
       message: 'Either prevOrder or nextOrder must be provided',

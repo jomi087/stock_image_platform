@@ -27,11 +27,16 @@ export const logger = createLogger({
   ],
 });
 
-if (true /*!isProd*/) {
+if (!isProd) {
   logger.add(
     new transports.Console({
       level: 'debug',
-      format: format.combine(format.timestamp(), format.simple()),
+      format: format.combine(
+        format.colorize(),
+        format.timestamp(),
+        format.errors({ stack: true }),
+        format.prettyPrint(),
+      ),
     }),
   );
 }

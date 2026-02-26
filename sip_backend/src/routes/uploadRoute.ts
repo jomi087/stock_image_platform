@@ -21,7 +21,7 @@ const router = Router();
 router.post(
   '/upload',
   authMiddleware,
-  upload.array('files'),
+  upload.array('file'),
   validateRequest(imageTitleSchema),
   imageController.uploadImage,
 );
@@ -36,18 +36,18 @@ router.delete(
 );
 
 router.patch(
+  '/reorder',
+  authMiddleware,
+  validateRequest(reorderImagesSchema),
+  imageController.reorderImages,
+);
+
+router.patch(
   '/:id',
   authMiddleware,
   upload.single('file'),
   validateRequest(editImageSchema),
   imageController.editImage,
-);
-
-router.patch(
-  '/reorder',
-  authMiddleware,
-  validateRequest(reorderImagesSchema),
-  imageController.reorderImages,
 );
 
 export default router;
