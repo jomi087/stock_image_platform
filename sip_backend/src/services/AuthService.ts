@@ -70,7 +70,7 @@ export class AuthService implements IAuthService {
       RESET_PASSWORD_TOKEN_TTL,
     );
 
-    const resetLink = `${process.env.FRONTEND_RESET_URL}?token=${resetToken}`;
+    const resetLink = `${process.env.FRONTEND_URL}/reset-password?token=${resetToken}`;
     await this._emailService.sendResetPasswordEmail(user.email, resetLink);
   }
 
