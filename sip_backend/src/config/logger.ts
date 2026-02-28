@@ -27,7 +27,7 @@ export const logger = createLogger({
   ],
 });
 
-if (!isProd) {
+if (true) {
   logger.add(
     new transports.Console({
       level: 'debug',

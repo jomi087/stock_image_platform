@@ -1,0 +1,35 @@
+#Docker Compose is primarily used to define and run multi-container Docker applications together.
+  # For example, you can configure two containers — sip-mongo (from the mongo:7 image) and sip-backend-container (from sip-backend image ) — and run them together. 
+  # Docker Compose automatically creates a shared network so the containers can communicate with each other. 
+  # Normally, containers are isolated by default, but Docker Compose provides an environment that makes it easy for multiple containers in the same application to interact.
+
+#still need to konw more thing thats y not imo=plimenting but this is how its down
+
+# services:
+#   mongo:
+#     image: mongo:7
+#     container_name: sip-mongo
+#     ports:
+#       - "27017:27017"
+#     volumes:
+#       - mongo-data:/data/db
+
+#   backend:
+#     build: .
+#     container_name: sip-backend-container
+#     ports:
+#       - "4000:4000"
+#     env_file:
+#       - .env
+#     depends_on:
+#       - mongo
+#     environment:
+#       DB_URI: mongodb://mongo:27017/image_stock_platform
+
+# volumes:
+#   mongo-data:
+
+# ----------- Execution Steps -----------
+  #start -> docker compose up (this will run both together)
+  #stop -> docker compose stop (this will stop both together)
+  #shutdown -> docker compose down (this will stop both together + will remove the container & compose network)
