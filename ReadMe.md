@@ -16,17 +16,14 @@ This is a **Full Stack Mini Project** built to give an **overall, broad idea of 
 - **TypeScript**
 - **Repository Architecture**
     - Service Layer
-    - Dependency Injection (DI)
-
+    - DI & DIP
+    
 ### Database
 - **MongoDB**
-
 ---
 
 ## 🌐 Deployed URLs
-- **Frontend (Live):** https://
-- **Backend API:** https://
-
+- **Frontend (Live):** [https://](https://stock-image-platform-xi.vercel.app/)
 ---
 
 ## 🎯 Purpose of This Project
